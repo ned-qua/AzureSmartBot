@@ -105,6 +105,8 @@ gunicorn --workers=2 --timeout=120 --access-logfile="-" --error-logfile="-" --bi
 ### GitHub Actions Workflow
 Use the azure portal to configure it by authenticating to your github account and choosing your repo, then Azure  will provide a default  workflow that will is enough for this demo but you can also costumize your workflows.
 
+![image](https://github.com/user-attachments/assets/cd9e03a4-62ff-4385-aeb8-1799d8992e30)
+
 
 ### Setting up GitHub Actions ( Optional for this demo, if you choose to write your own workflows)
 
