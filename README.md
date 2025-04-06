@@ -209,5 +209,3 @@ For issues or questions:
 1. Check Azure App Service logs
 2. Review GitHub Actions workflow runs
 3. Contact system administrator
-
-T
