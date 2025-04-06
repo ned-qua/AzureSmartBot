@@ -103,66 +103,10 @@ gunicorn --workers=2 --timeout=120 --access-logfile="-" --error-logfile="-" --bi
 ## CI/CD Pipeline
 
 ### GitHub Actions Workflow
+Use the azure portal to configure it by authenticating to your github account and choosing your repo, then Azure  will provide a default  workflow that will is enough for this demo but you can also costumize your workflows.
 
-Create `.github/workflows/deploy.yml`:
 
-```yaml name=.github/workflows/deploy.yml
-name: Deploy to Azure Web App
-
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
-env:
-  AZURE_WEBAPP_NAME: your-webapp-name    # Replace with your app name
-  PYTHON_VERSION: '3.10'
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ env.PYTHON_VERSION }}
-
-    - name: Create and start virtual environment
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
-    - name: Run Tests
-      run: |
-        pip install pytest
-        pytest
-
-    - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v2
-      with:
-        name: python-app
-        path: |
-          .
-          !venv/
-
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: .
-```
-
-### Setting up GitHub Actions
+### Setting up GitHub Actions ( Optional for this demo, if you choose to write your own workflows)
 
 1. In Azure Portal:
    - Go to your Web App
